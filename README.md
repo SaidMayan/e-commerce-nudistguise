@@ -2,13 +2,13 @@
 NUDISTGUISE is an online streetwear and luxury good's store embodying Dieter Rams philosophy of less but better. The user will find a small range of goods for sale from niched designers, artists and artisans... Users will have the ability to view all product listings, click on a single item and find a detailed description and the ability to add to cart. Once an item is added to cart, you have the option to continue shopping or go to checkout. Goal is implement
 
 ### Landing Page:
-![wireframe](./img/nudistguise-landing-page.jpg)
+![wireframe](./img/nudistguise-landing-page.png)
 ### View All Items:
-![wireframe](./img/nudistguise-view-all.jpg)
+![wireframe](./img/nudistguise-view-all.png)
 ### View Single Item:
-![wireframe](./img/nudistguise-view-one.jpg)
+![wireframe](./img/nudistguise-view-one.png)
 ### Checkout:
-![wireframe](./img/nudistguise-checkout.jpg)
+![wireframe](./img/nudistguise-checkout.png)
 
 ## DB Schema
 
