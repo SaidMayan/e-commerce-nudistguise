@@ -33,6 +33,8 @@ NUDISTGUISE is an online streetwear and luxury good's store embodying Dieter Ram
 | brand | VARCHAR(255) NOT NULL |
 | brief_description | VARCHAR(255) |
 | detailed_description | VARCHAR(255) |
+| size_clothing | VARCHAR(255) |
+| size_num | INT |
 | img_url | VARCHAR(255) |
 | price | INT NOT NULL |
 | stock | INT |

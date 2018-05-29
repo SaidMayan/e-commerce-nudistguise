@@ -20,11 +20,13 @@ id SERIAL PRIMARY KEY,
 brand VARCHAR(255) NOT NULL,
 brief_description VARCHAR(255),
 detailed_description VARCHAR(255),
+size_clothing VARCHAR(255),
+size_num INT,
 img_url VARCHAR(255),
 price INT NOT NULL,
 stock INT,
 category_id INT REFERENCES categories(id),
-users_id INT REFERENCES users(id)
+user_id INT REFERENCES users(id)
 );
 
 CREATE TABLE cart (
