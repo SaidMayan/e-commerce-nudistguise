@@ -9,13 +9,15 @@
     "start-server": "nodemon server.js",
     "start-client": "cd client && npm start",
     "reset-db": "psql -f db/schema.sql && psql -f db/seed.sql"
-}
-,
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^2.0.1",
     "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
     "morgan": "^1.9.0",
     "pg-promise": "^8.4.4"
   },

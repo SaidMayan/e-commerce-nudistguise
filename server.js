@@ -2,21 +2,23 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 
-const app = express();
+const authController = require('./controllers/authController');
+const authRouter = require('./routes/authRouter');
+const apiRouter = require('./routes/apiRouter');
 
+const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(logger('dev'));
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
+app.use(authController.receiveToken);
 
 if(process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-app.get('/', function (req, res) {
- return res.send('Express up and running...');
-});
+app.use('/api', apiRouter);
 
 
 app.listen(PORT, ()=> {

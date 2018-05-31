@@ -58,7 +58,7 @@ function login(req, res, next) {
 
 module.exports = {
   receiveToken,
-  register,
   restrict,
+  register,
   login
 }

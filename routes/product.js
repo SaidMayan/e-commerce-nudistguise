@@ -22,7 +22,7 @@ router.route('/:id')
     resController.sendErrorResponse
   )
   .put(
-    productsController.updateProduct
+    productsController.updateProduct,
     resController.sendOkResponse,
     resController.sendErrorResponse
   )

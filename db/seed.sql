@@ -1,7 +1,7 @@
 \c nudistguise_db;
 
-INSERT INTO users (username, email, pw_digest)
-VALUES ('test', 'test@ga.co', 'test' );
+INSERT INTO users (email, pw_digest, username)
+VALUES ('test@ga.co', 'test', 'test');
 
 INSERT INTO categories (category)
 VALUES

@@ -5,7 +5,7 @@ const resController = require('../controllers/resController');
 
 router.route('/')
   .get(
-    categoriesController.getAllCategories
+    categoriesController.getAllCategories,
     resController.sendOkResponse,
     resController.sendErrorResponse
 )
