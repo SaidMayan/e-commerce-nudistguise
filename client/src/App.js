@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 import './App.css';
+import LandingPage from './components/LandingPage'
 import Login from './components/Login';
 import Registration from './components/Registration';
+import Products from './components/products/products.jsx';
+import ProductsView from './components/products/productsView.jsx';
 import { login, register, logout} from './services/apiService';
 
 
@@ -10,13 +13,28 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: null
+      products: [],
+      currentUser: null,
     }
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.logOut = this.logOut.bind(this);
 
   }
+
+fetchProducts(){
+  fetch('/api/products')
+  .then(resp => {
+    if(!resp.ok) throw new Error('There was an error. Take 5...');
+  return resp.json()
+  })
+  .then(respBody => {
+    this.setState({
+      products: respBody.data
+    })
+  });
+}
+
 
 checkToken() {
     const authToken = localStorage.getItem('authToken');
@@ -64,6 +82,7 @@ handleRegister(creds) {
 
 componentDidMount() {
   this.checkToken();
+  this.fetchProducts();
 }
 
 
@@ -71,7 +90,16 @@ componentDidMount() {
     let Site;
     if(this.state.currentUser){
       Site = (
-        <h1>You are logged in...</h1>
+        <div>
+        <Route exact path="/" render={() => (<LandingPage />)} />
+        <Route path="/products/all" render={({ match }) => (
+                <Products
+                match={ match }
+                viewAll={this.state.products}
+                category={this.state.categories}
+              />)}
+            />
+        </div>
       )
     } else {
       Site = ( <div className="App">
