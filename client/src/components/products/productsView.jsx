@@ -42,7 +42,7 @@ fetchProduct() {
   })
   .then(data => {
     this.setState({
-      product: data.products
+      product: data.data
     })
   })
 }
@@ -52,11 +52,6 @@ componentDidMount() {
 }
 
 render() {
-  const imgStyle = {
-    height: '400px',
-    backgroundSize: 'cover',
-    backgroundPosition: 'left'
-  }
 
   const options = Array(this.state.product.stock).fill(0).map((quantity, i) => {
       return (
@@ -67,7 +62,7 @@ render() {
 return (
       <div className="single-product">
         <div>
-          {this.state.product.img_url && <div style={imgStyle} className="product-image"></div>}
+        <img src={this.state.product.img_url} width="367px" />
         </div>
         <div className="product-info">
           <div>

@@ -2,10 +2,10 @@ const db = require('../config/connection');
 
 function getCartItems(user_id) {
   return db.any(`
-    SELECT cart.id, cart.product_id, cart.quantity, product.id, product.brand, product.brief_description, product.price, product.img_url, product.stock
+    SELECT cart.id, cart.product_id, cart.quantity, products.id, products.brand, products.brief_description, products.price, products.img_url, products.stock
     FROM products
     JOIN cart
-    ON product.id = cart.product_id
+    ON products.id = cart.product_id
     WHERE cart.user_id = $1
     ORDER BY cart.id
     `, user_id);

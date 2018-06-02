@@ -167,12 +167,14 @@ componentDidMount() {
           /></div>)}
         />
         <Route path="/categories/:type/:id" render={({ match, history }) => (
+          <div>
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <ProductsView
             match={match}
             onSubmit={this.handleSubmit}
             history={history}
             user={this.state.user}
-          />)}
+          /></div>)}
         />
       </div>
     );
