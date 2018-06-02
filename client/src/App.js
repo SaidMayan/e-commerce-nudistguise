@@ -5,9 +5,10 @@ import LandingPage from './components/LandingPage'
 import Login from './components/Login';
 import Registration from './components/Registration';
 import Products from './components/products/products';
-import Categories from './components/categories/categories';
 import ProductsView from './components/products/productsView';
+import Categories from './components/categories/categories';
 import { login, register, logout} from './services/apiService';
+import Cart from './components/cart/cart';
 
 
 class App extends Component {
@@ -16,6 +17,8 @@ class App extends Component {
     this.state = {
       products: [],
       categories: [],
+      cart: [],
+      total: 0,
       currentUser: null,
     }
     this.handleLogin = this.handleLogin.bind(this);
@@ -38,8 +41,9 @@ fetchProducts(){
 }
 
 fetchCategories() {
-  fetch('api/categories')
+  fetch('/api/categories')
   .then(resp => {
+    console.log(resp);
     if(!resp.ok) throw new Error('There was an error. Take 5...');
   return resp.json()
   })
@@ -82,6 +86,11 @@ logOut(){
   this.setState ({
     currentUser: ""
   })
+}
+
+selectCategory(category) {
+  const index = this.state.categories.findIndex(perCategory => perCategory.category.toLocaleLowerCase() === category);
+  return this.state.categories[index];
 }
 
 handleLogin(creds) {
@@ -144,8 +153,26 @@ componentDidMount() {
           <Categories
             categories={this.state.categories}
           />
-          </div>
-          )}
+          </div>)}
+        />
+        <Route exact path="/categories/:id" render={({ match }) => (
+          // console.log('checking', match.params.type)
+          <div>
+           <LandingPage user={this.state.currentUser} logout={this.logOut} />
+          <Products
+            match={ match }
+            category={this.selectCategory(match.params.id)}
+            products={this.state.products}
+            view={this.singleView}
+          /></div>)}
+        />
+        <Route path="/categories/:type/:id" render={({ match, history }) => (
+          <ProductsView
+            match={match}
+            onSubmit={this.handleSubmit}
+            history={history}
+            user={this.state.user}
+          />)}
         />
       </div>
     );

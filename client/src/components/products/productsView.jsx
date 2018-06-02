@@ -54,7 +54,6 @@ componentDidMount() {
 render() {
   const imgStyle = {
     height: '400px',
-    backgroundImage: `url(${this.state.product.img_url})`,
     backgroundSize: 'cover',
     backgroundPosition: 'left'
   }

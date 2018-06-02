@@ -26,20 +26,17 @@ function LandingPage(props) {
     </div>
       <ul className="firstUl">
         <li><Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>NEW ITEMS</Link></li>
-        <li>CATEGORIES</li>
+        <li><Link to="/categories" style={{ textDecoration: 'none', color: 'inherit' }}>CATEGORIES</Link></li>
         <li>BRANDS</li>
         <li>NUDISTGUISE FW18</li>
         <li>COMING SOON...</li>
         <li>BLOG</li>
       </ul>
       <br/>
-      <br/>
-      <br/>
-      {logReg}
-      <br/>
-      <br/>
+     {logReg}
       <br/>
       <ul>
+        <li><Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>Cart</Link></li><br/><br/>
         <li>Help</li>
         <li>Newsletter</li>
         <li>Legal</li>

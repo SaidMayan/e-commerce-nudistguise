@@ -8,6 +8,13 @@ router.route('/')
     categoriesController.getAllCategories,
     resController.sendOkResponse,
     resController.sendErrorResponse
-)
+  )
+
+router.route('/:id')
+  .get(
+    categoriesController.getProductsByCategories,
+    resController.sendOkResponse,
+    resController.sendErrorResponse
+  )
 
 module.exports = router;
