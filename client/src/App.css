@@ -21,16 +21,31 @@
 font-size: 50px;
 text-align: left;
 border-bottom: 3px solid lightgrey;
-
 padding-bottom: 10px;
 padding-left: 40px;
 }
+
+.store-logo-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 
 ul {
 list-style-type: none;
 text-align: left;
 font-size: 20px;
 font-weight: 550;
+}
+
+.greetUser {
+text-align: left;
+font-size: 20px;
+}
+
+.logOut {
+text-align: left;
+font-size: 20px;
 }
 
 .Login-landing{

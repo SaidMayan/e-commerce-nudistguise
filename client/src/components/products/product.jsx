@@ -9,9 +9,8 @@ function Product(props) {
     <div>
       <div className="product-description">
       <img src={props.product.img_url} width="367px" />
-      <h3 className="brand-description">{props.product.brand}</h3>
       <h3>{props.product.brief_description}</h3>
-      <h3>{props.product.price}</h3>
+      <h3>${props.product.price}</h3>
       <Link to={`/products/${id}`}>
       <p>View More</p>
     </Link>

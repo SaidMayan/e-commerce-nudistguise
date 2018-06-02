@@ -3,7 +3,7 @@ const productsDb = require('../models/products');
 function getAllProducts(req, res, next) {
   productsDb.getAllProducts()
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {
@@ -14,7 +14,7 @@ function getAllProducts(req, res, next) {
 function getOneProduct(req, res, next) {
   productsDb.getOneProduct(req.params.id)
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {
@@ -26,7 +26,7 @@ function getOneProduct(req, res, next) {
 function getUserProducts(req, res, next) {
   productsDb.getUserProducts(req.params.id)
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {
@@ -37,7 +37,7 @@ function getUserProducts(req, res, next) {
 function createProduct(req, res, next) {
   productsDb.createProduct(req.body)
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {
@@ -49,7 +49,7 @@ function updateProduct(req, res, next) {
   req.body.id = req.params.id;
   productsDb.updateProduct(req.body)
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {
@@ -60,7 +60,7 @@ function updateProduct(req, res, next) {
 function deleteProduct(req, res, next) {
   productsDb.deleteProduct(req.params.id)
   .then(data => {
-    res.locals.products = data;
+    res.locals.data = data;
     next();
   })
   .catch(err => {

@@ -2,6 +2,7 @@ import React from 'react';
 import Product from './product';
 
 function Products(props) {
+  console.log(props);
   let products;
   if(props.products) {
     products = props.products.map(product => {
