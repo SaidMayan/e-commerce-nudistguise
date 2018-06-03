@@ -82,7 +82,7 @@ return (
                   {options}
                 </select>
               </div>
-              <button className="links" value="submit">Add to Cart</button>
+              <button value="submit">Add to Cart</button>
             </form>
           </div>
         </div>

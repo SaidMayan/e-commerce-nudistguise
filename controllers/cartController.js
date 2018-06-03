@@ -24,7 +24,7 @@ function addToCart(req, res, next) {
 }
 
 function deleteFromCart(req, res, next) {
-  cartDb.deleteFromCart(req.params.product_id)
+  cartDb.deleteFromCart(req.params.productId)
   .then(data => {
     res.locals.data = data;
     next();

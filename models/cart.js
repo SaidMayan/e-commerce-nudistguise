@@ -19,22 +19,22 @@ function addToCart(product) {
     `, product);
 }
 
+function deleteFromCart(id) {
+  return db.one(`
+    DELETE FROM cart
+    WHERE id = $1
+    RETURNING *
+  `, id)
+}
+
 function editCart(product) {
   return db.one(`
     UPDATE cart
-    SET quanity = $/quanity/
+    SET quantity = $/quantity/
     WHERE id = $/id/
     AND user_id = $/user_id/
     RETURNING *
   `, product);
-}
-
-function deleteFromCart(id) {
-  return db.one(`
-    DELETE FROM cart,
-    WHERE id = $1
-    RETURNING *
-  `, id)
 }
 
 function calculateTotal(id) {

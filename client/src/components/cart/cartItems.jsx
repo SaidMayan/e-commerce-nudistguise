@@ -19,8 +19,8 @@ class CartItems extends Component {
     return (
       <div className="cart">
         <div className="cart-product-info">
-          <h4>{product.name} ---- ${product.price}</h4>
-          <p>{product.description}</p>
+          <h4>{product.brand} ---- ${product.price}</h4>
+          <p>{product.brief_description}</p>
           {this.props.onDelete ? (
             <div>
               <p>Quantity: x{product.quantity}</p>
