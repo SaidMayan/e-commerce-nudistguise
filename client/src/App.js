@@ -21,6 +21,10 @@ class App extends Component {
       total: 0,
       currentUser: null,
     }
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
     this.logOut = this.logOut.bind(this);
@@ -30,7 +34,7 @@ class App extends Component {
 fetchProducts(){
   fetch('/api/products')
   .then(resp => {
-    if(!resp.ok) throw new Error('There was an error. Take 5...');
+    if(!resp.ok) throw new Error('Error: Take 5, you and your API client-side fetch call...');
   return resp.json()
   })
   .then(respBody => {
@@ -43,8 +47,8 @@ fetchProducts(){
 fetchCategories() {
   fetch('/api/categories')
   .then(resp => {
-    console.log(resp);
-    if(!resp.ok) throw new Error('There was an error. Take 5...');
+    // console.log(resp);
+    if(!resp.ok) throw new Error('Error: Take 5, you and your API client-side fetch call...');
   return resp.json()
   })
   .then(respBody => {
@@ -52,6 +56,129 @@ fetchCategories() {
       categories: respBody.data
     })
   });
+}
+
+fetchCartItems() {
+  fetch(`/api/cart/${this.state.currentUser.id}`)
+  .then(resp => {
+    if(!resp.ok) throw new Error('Error: client-side API fetch call...');
+  return resp.json()
+  })
+  .then(data => {
+    this.setState({
+      cart: data.data
+    })
+  })
+}
+
+fetchOrderTotal() {
+  fetch(`/api/cart/total/${this.state.currentUser.id}`)
+  .then(resp => {
+    if (!resp.ok) throw new Error('Error: client-side API fetch call...');
+  return resp.json()
+  })
+  .then(data => {
+    let sum = data.data[0].sum;
+    if(sum === null) {
+      sum = 0;
+    }
+    this.setState({
+      total: sum
+    })
+  })
+}
+
+addToCart(info) {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(info),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }
+  fetch(`/api/cart/${this.state.currentUser.id}`, options)
+  .then(resp => {
+    console.log(resp);
+    if (!resp.ok) throw new Error('Error: client-side API fetch call...');
+  return resp.json()
+  })
+  .then(respBody => {
+    this.updateCart();
+  })
+}
+
+deleteFromCart(productId) {
+  fetch(`/api/cart/${this.state.currentUser}/${productId}`, {
+    method: 'Delete'
+  })
+  .then(resp => {
+    if(!resp.ok) throw new Error('Error: client-side API fetch call...');
+    return resp.json();
+  })
+  .then(respBody => {
+    this.updateCart();
+  })
+}
+
+editCart(info) {
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(info),
+    headers: {
+      'content-type': 'application/json'
+    }
+  }
+  fetch(`/api/cart/${this.state.currentUser.id}/${info.product_id}`, options)
+
+  .then(resp => {
+    if(!resp.ok) throw new Error('Error: client-side API fetch call...');
+    return resp.json();
+  })
+  .then(respBody => {
+    this.updateCart();
+  })
+}
+
+updateStockPostCheckout(product) {
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(product),
+    headers: {
+      'content-type': 'applicaton/json'
+    }
+  }
+  const userId = this.state.currentUser.id;
+  const productId = product.product_id;
+  fetch(`/api/cart/${userId}/update/${productId}`, options)
+  .then(resp => {
+    if(!resp.ok) throw new Error('Error: client-side API fetch call...');
+    return resp.json();
+  })
+  .then(() => {
+    this.deleteFromCart(product.id);
+    this.fetchProducts();
+  })
+}
+
+updateCart() {
+  this.fetchCartItems();
+  this.fetchOrderTotal();
+}
+
+handleSubmit(info) {
+  this.addToCart(info);
+}
+
+handleDelete(id) {
+  this.deleteFromCart(id);
+}
+
+handleEdit(info) {
+  this.editCart(info);
+}
+
+handleUpdate(product) {
+  this.updateStockPostCheckout(product);
 }
 
 checkToken() {
@@ -175,6 +302,18 @@ componentDidMount() {
             history={history}
             user={this.state.user}
           /></div>)}
+        />
+        <Route path="/cart" render ={({ history }) => (
+          <Cart
+            cartItems={this.state.cart}
+            total={this.state.total}
+            onDelete={this.handleDelete}
+            onEdit={this.handleEdit}
+            onUpdate={this.handleUpdate}
+            history={history}
+            user={this.props.currentUser}
+          />
+        )}
         />
       </div>
     );
