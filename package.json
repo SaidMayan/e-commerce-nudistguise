@@ -9,6 +9,7 @@
     "start-server": "nodemon server.js",
     "start-client": "cd client && npm start",
     "reset-db": "psql -f db/schema.sql && psql -f db/seed.sql"
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
