@@ -17,6 +17,8 @@ class Total extends Component {
         product_id,
         id
       }
+      // console.log(newItem);
+      // debugger;
       this.props.onUpdate(newItem);
     })
   }

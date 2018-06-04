@@ -116,9 +116,9 @@ addToCart(info) {
 }
 
 deleteFromCart(productId) {
-  console.log(this.state.currentUser.id);
-  console.log(productId);
-  debugger;
+  // console.log(this.state.currentUser.id);
+  // console.log(productId);
+  // debugger;
     fetch(`/api/cart/${this.state.currentUser.id}/${productId}`, {
       method: 'DELETE'
     })
@@ -153,6 +153,7 @@ editCart(info) {
   }
 
 updateStockPostCheckout(product) {
+  console.log(product);
   const options = {
     method: 'PUT',
     body: JSON.stringify(product),

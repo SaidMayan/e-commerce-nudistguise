@@ -40,7 +40,7 @@ function editCart(product) {
 
 function calculateTotal(id) {
   return db.any(`
-    SELECT SUM(products.price)
+    SELECT SUM(products.price * cart.quantity)
     FROM products
     JOIN cart
     ON products.id = cart.product_id
@@ -49,6 +49,7 @@ function calculateTotal(id) {
 }
 
 function updateProductPostCheckout(product) {
+  // console.log(product);
   return db.one(`
     UPDATE products
     SET stock = $/stock/

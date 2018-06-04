@@ -63,12 +63,15 @@ function calculateTotal(req, res, next) {
 }
 
 function updateProductPostCheckout(req, res, next) {
+  console.log(req);
   cartDb.updateProductPostCheckout(req.body)
   .then(data => {
+    console.log(data);
     res.locals.data = data;
     next();
   })
   .catch(err => {
+    console.log(err);
     next(err);
   })
 }
