@@ -1,5 +1,3 @@
-\c nudistguise_db;
-
 INSERT INTO users (email, pw_digest, username)
 VALUES ('test@ga.co', 'test', 'test');
 
