@@ -2,7 +2,7 @@ const db = require('../config/connection');
 
 function getCartItems(user_id) {
   return db.any(`
-    SELECT cart.id, cart.product_id, cart.quantity, products.id, products.brand, products.brief_description, products.price, products.img_url, products.stock
+    SELECT cart.id as c_id, cart.product_id, cart.quantity, products.id, products.brand, products.brief_description, products.price, products.img_url, products.stock
     FROM products
     JOIN cart
     ON products.id = cart.product_id
@@ -12,7 +12,7 @@ function getCartItems(user_id) {
 }
 
 function addToCart(product) {
-  console.log(product);
+  // console.log(product);
   return db.one(`
     INSERT INTO cart (user_id, product_id, quantity)
     VALUES ($/user_id/, $/product_id/, $/quantity/)

@@ -27,7 +27,6 @@ handleSubmit(e) {
   e.preventDefault();
   if(this.props.user) {
     this.props.onSubmit(this.state.add);
-    this.props.history.push('/cart');
   }
   else {
     this.props.history.push('/login');

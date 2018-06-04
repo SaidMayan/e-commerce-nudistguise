@@ -95,8 +95,7 @@ fetchOrderTotal() {
 }
 
 addToCart(info) {
-  console.log(this.state.currentUser.id);
-  debugger;
+  // console.log(this.state.currentUser.id);
   const options = {
     method: 'POST',
     body: JSON.stringify(info),
@@ -112,10 +111,14 @@ addToCart(info) {
   })
   .then(respBody => {
     this.updateCart();
+    this.props.history.push('/cart');
   })
 }
 
 deleteFromCart(productId) {
+  console.log(this.state.currentUser.id);
+  console.log(productId);
+  debugger;
     fetch(`/api/cart/${this.state.currentUser.id}/${productId}`, {
       method: 'DELETE'
     })
@@ -130,6 +133,7 @@ deleteFromCart(productId) {
   }
 
 editCart(info) {
+  console.log(info);
     const options = {
       method: 'PUT',
       body: JSON.stringify(info),
@@ -137,7 +141,7 @@ editCart(info) {
         'content-type': 'application/json'
       }
     }
-    fetch(`/api/cart/${this.state.currentUser.id}/${info.product_id}`,
+    fetch(`/api/cart/${this.state.currentUser.id}/${info.id}`,
       options)
     .then(resp => {
       if (!resp.ok) throw new Error('Error: client-side API fetch call...');

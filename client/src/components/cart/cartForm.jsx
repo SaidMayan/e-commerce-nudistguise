@@ -6,7 +6,7 @@ class CartForm extends Component {
     super(props);
     this.state = {
       edited: {
-        id: this.props.product.id,
+        id: this.props.product.c_id,
         quantity: '1'
       }
     }

@@ -19,17 +19,20 @@ function addToCart(req, res, next) {
     next();
   })
   .catch(err => {
+    console.log(err);
     next(err);
   })
 }
 
 function deleteFromCart(req, res, next) {
-  cartDb.deleteFromCart(req.params.productId, req.params.user)
+  cartDb.deleteFromCart(req.params.productId)
   .then(data => {
+    // console.log(data);
     res.locals.data = data;
     next();
   })
   .catch(err => {
+    // console.log(err);
     next(err);
   })
 }
@@ -38,10 +41,12 @@ function editCart(req, res, next) {
   req.body.user_id = req.params.id;
   cartDb.editCart(req.body)
   .then(data => {
+    console.log(data);
     res.locals.data = data;
     next();
   })
   .catch(err => {
+    console.log(err);
     next(err);
   })
 }

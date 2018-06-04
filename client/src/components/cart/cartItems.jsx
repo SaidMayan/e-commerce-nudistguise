@@ -9,7 +9,8 @@ class CartItems extends Component {
   }
 
   handleDelete() {
-    this.props.onDelete(this.props.product.id);
+    console.log(this.props)
+    this.props.onDelete(this.props.product.c_id);
   }
 
   render() {
@@ -26,7 +27,7 @@ class CartItems extends Component {
           {this.props.onDelete ? (
             <div>
               <p>Quantity: x{product.quantity}</p>
-              <Link className="links" to={`/cart/edit/${product.id}`}>Edit Quantity</Link>
+              <Link className="links" to={`/cart/edit/${product.c_id}`}>Edit Quantity</Link>
               <button className="links" onClick={this.handleDelete}>Delete From Cart</button>
             </div>
           ) : (

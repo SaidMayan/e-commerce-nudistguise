@@ -7,10 +7,10 @@ function Cart(props) {
   // console.log(props.cartItems);
   const cartItems = props.cartItems.map(product => {
     return (
-      <Switch key={product.id}>
+      <Switch key={product.c_id}>
         <Route
           exact
-          path={`/cart/edit/${product.id}`}
+          path={`/cart/edit/${product.c_id}`}
           render={({ history }) => (
             <CartItems
 
