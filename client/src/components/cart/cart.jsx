@@ -4,6 +4,7 @@ import CartItems from './cartItems';
 import Total from './Total';
 
 function Cart(props) {
+  // console.log(props.cartItems);
   const cartItems = props.cartItems.map(product => {
     return (
       <Switch key={product.id}>
@@ -12,6 +13,7 @@ function Cart(props) {
           path={`/cart/edit/${product.id}`}
           render={({ history }) => (
             <CartItems
+
               onEdit={props.onEdit}
               product={product}
               history={history}
@@ -21,6 +23,7 @@ function Cart(props) {
         <Route
           render={() => (
             <CartItems
+
               onDelete={props.onDelete}
               product={product}
             />
@@ -32,13 +35,12 @@ function Cart(props) {
 
 
   return (
-    <div>
-      <div className="cart-container">
-        <div className="left-cart">
+      <div>
+        <div>
           <h3>Shopping Cart:</h3>
           {cartItems}
         </div>
-        <div className="right-cart">
+        <div>
           <Total
             total={props.total}
             cartItems={props.cartItems}
@@ -46,7 +48,6 @@ function Cart(props) {
           />
         </div>
       </div>
-    </div>
   )
 }
 

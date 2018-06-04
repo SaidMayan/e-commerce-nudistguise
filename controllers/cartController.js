@@ -24,7 +24,7 @@ function addToCart(req, res, next) {
 }
 
 function deleteFromCart(req, res, next) {
-  cartDb.deleteFromCart(req.params.productId)
+  cartDb.deleteFromCart(req.params.productId, req.params.user)
   .then(data => {
     res.locals.data = data;
     next();
@@ -57,8 +57,8 @@ function calculateTotal(req, res, next) {
   })
 }
 
-function updateStockPostCheckout(req, res, next) {
-  cartDb.updateStockPostCheckout(req.body)
+function updateProductPostCheckout(req, res, next) {
+  cartDb.updateProductPostCheckout(req.body)
   .then(data => {
     res.locals.data = data;
     next();
@@ -74,5 +74,5 @@ module.exports = {
   deleteFromCart,
   editCart,
   calculateTotal,
-  updateStockPostCheckout
+  updateProductPostCheckout
 }

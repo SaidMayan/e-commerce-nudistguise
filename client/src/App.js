@@ -26,8 +26,8 @@ class App extends Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.logOut = this.logOut.bind(this);
     this.handleRegister = this.handleRegister.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
 
   }
 
@@ -58,20 +58,24 @@ fetchCategories() {
   });
 }
 
-
- fetchCartItems() {
+  fetchCartItems() {
+    if(this.state.currentUser) {
     fetch(`/api/cart/${this.state.currentUser.id}`)
     .then(resp => {
-      // console.log(resp);
+      // console.log('see here', resp);
       if (!resp.ok) throw new Error('Error: client-side API fetch call...');
       return resp.json();
     })
     .then(data => {
-      this.setState({
-        cart: data.data
-      })
-    })
-  }
+      // console.log('fetchcart:',data);
+      this.setState((prevState, props) => {
+        return {
+            cart: data.data
+          }
+        })
+    });
+}
+}
 
 fetchOrderTotal() {
   fetch(`/api/cart/total/${this.state.currentUser.id}`)
@@ -91,6 +95,8 @@ fetchOrderTotal() {
 }
 
 addToCart(info) {
+  console.log(this.state.currentUser.id);
+  debugger;
   const options = {
     method: 'POST',
     body: JSON.stringify(info),
@@ -131,7 +137,6 @@ editCart(info) {
         'content-type': 'application/json'
       }
     }
-
     fetch(`/api/cart/${this.state.currentUser.id}/${info.product_id}`,
       options)
     .then(resp => {
@@ -213,13 +218,17 @@ checkToken() {
     })
   }
 
-handleLogin(creds) {
-  login(creds)
-  .then(user => {
-    this.setState({currentUser: user})
-    this.updateCart();
-  });
- }
+ handleLogin(creds) {
+    login(creds)
+    .then(user => {
+      this.setState({user})
+      this.fetchUserProducts();
+      this.updateCart();
+    })
+    .catch(err => {
+      console.log('err');
+    })
+  }
 
 handleRegister(creds) {
   register(creds)
@@ -229,12 +238,11 @@ handleRegister(creds) {
   });
  }
 
-handleLogout(){
-  logout();
+logOut(){
+  localStorage.setItem('authToken', '');
   this.setState ({
-    currentUser: ""
+    currentUser: null
   })
-  this.props.history.push('/')
 }
 
 selectCategory(category) {
@@ -246,16 +254,22 @@ componentDidMount() {
   this.checkToken();
   this.fetchProducts();
   this.fetchCategories();
+  this.fetchCartItems()
+}
+
+componentWillReceiveProps() {
+  this.fetchCartItems()
+  this.fetchOrderTotal()
 }
 
 
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={() => (<LandingPage user={this.state.currentUser} logout={this.handleLogout} />)} />
+        <Route exact path="/" render={() => (<LandingPage user={this.state.currentUser} logout={this.logOut} />)} />
         <Route path="/products" render={({ match }) => (
         <div>
-        <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+        <LandingPage user={this.state.currentUser} logout={this.logOut} />
                 <Products
                 match={ match }
                 viewAll={this.state.products}
@@ -265,7 +279,7 @@ componentDidMount() {
 
         <Route path="/login" render={({ history }) => (
           <div>
-          <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <Login
             user={this.state.currentUser}
             history={history}
@@ -274,7 +288,7 @@ componentDidMount() {
           />
         <Route path="/register" render={({ history }) => (
           <div>
-          <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <Registration
             history={history}
             onSubmit={this.handleRegister}
@@ -282,7 +296,7 @@ componentDidMount() {
           />
         <Route exact path="/categories" render={() => (
           <div>
-          <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <Categories
             categories={this.state.categories}
           />
@@ -291,7 +305,7 @@ componentDidMount() {
         <Route exact path="/categories/:id" render={({ match }) => (
           // console.log('checking', match.params.type)
           <div>
-           <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+           <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <Products
             match={ match }
             category={this.selectCategory(match.params.id)}
@@ -301,7 +315,7 @@ componentDidMount() {
         />
         <Route path="/categories/:type/:id" render={({ match, history }) => (
           <div>
-          <LandingPage user={this.state.currentUser} logout={this.handleLogout} />
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <ProductsView
             match={match}
             onSubmit={this.handleSubmit}
@@ -310,6 +324,8 @@ componentDidMount() {
           /></div>)}
         />
         <Route path="/cart" render ={({ history }) => (
+          <div>
+          <LandingPage user={this.state.currentUser} logout={this.logOut} />
           <Cart
             cartItems={this.state.cart}
             total={this.state.total}
@@ -318,8 +334,7 @@ componentDidMount() {
             onUpdate={this.handleUpdate}
             history={history}
             user={this.props.currentUser}
-          />
-        )}
+          /></div>)}
         />
       </div>
     );

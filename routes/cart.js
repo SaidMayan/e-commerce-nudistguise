@@ -22,7 +22,7 @@ router.route('/total/:id')
     resController.sendErrorResponse
   )
 
-router.route(':id/:productId')
+router.route('/:id/:productId')
   .put(
     cartController.editCart,
     resController.sendOkResponse,
@@ -36,7 +36,7 @@ router.route(':id/:productId')
 
 router.route('/:id/update/:productId')
   .put(
-    cartController.updateStockPostCheckout,
+    cartController.updateProductPostCheckout,
     resController.sendOkResponse,
     resController.sendErrorResponse
   )

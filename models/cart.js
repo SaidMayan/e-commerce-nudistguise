@@ -12,6 +12,7 @@ function getCartItems(user_id) {
 }
 
 function addToCart(product) {
+  console.log(product);
   return db.one(`
     INSERT INTO cart (user_id, product_id, quantity)
     VALUES ($/user_id/, $/product_id/, $/quantity/)
@@ -47,7 +48,7 @@ function calculateTotal(id) {
   `, id);
 }
 
-function updateStockPostCheckout(product) {
+function updateProductPostCheckout(product) {
   return db.one(`
     UPDATE products
     SET stock = $/stock/
@@ -62,6 +63,6 @@ module.exports = {
   editCart,
   deleteFromCart,
   calculateTotal,
-  updateStockPostCheckout
+  updateProductPostCheckout
 }
 

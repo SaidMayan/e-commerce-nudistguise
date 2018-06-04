@@ -19,8 +19,10 @@ class CartItems extends Component {
     return (
       <div className="cart">
         <div className="cart-product-info">
-          <h4>{product.brand} ---- ${product.price}</h4>
+          <img src={product.img_url} width="367px" />
+          <h4>{product.brand}</h4>
           <p>{product.brief_description}</p>
+          <h4>${product.price}</h4>
           {this.props.onDelete ? (
             <div>
               <p>Quantity: x{product.quantity}</p>
