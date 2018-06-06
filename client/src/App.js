@@ -77,6 +77,8 @@ fetchCategories() {
 }
 }
 
+
+// this code references https://github.com/genkjames/natured
 fetchOrderTotal() {
   fetch(`/api/cart/total/${this.state.currentUser.id}`)
   .then(resp => {
