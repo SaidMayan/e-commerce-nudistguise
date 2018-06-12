@@ -59,7 +59,7 @@ fetchCategories() {
 }
 
   fetchCartItems() {
-    if(this.state.currentUser) {
+    // if(this.state.currentUser) {
     fetch(`/api/cart/${this.state.currentUser.id}`)
     .then(resp => {
       // console.log('see here', resp);
@@ -74,12 +74,13 @@ fetchCategories() {
           }
         })
     });
-}
+// }
 }
 
 
 // this code references https://github.com/genkjames/natured
 fetchOrderTotal() {
+  // if(this.state.currentUser) {
   fetch(`/api/cart/total/${this.state.currentUser.id}`)
   .then(resp => {
     if (!resp.ok) throw new Error('Error: client-side API fetch call...');
@@ -94,6 +95,7 @@ fetchOrderTotal() {
       total: sum
     })
   })
+// }
 }
 
 addToCart(info) {
@@ -228,7 +230,7 @@ checkToken() {
  handleLogin(creds) {
     login(creds)
     .then(user => {
-      this.setState({user})
+      this.setState({currentUser: user})
       this.fetchUserProducts();
       this.updateCart();
     })
@@ -261,12 +263,13 @@ componentDidMount() {
   this.checkToken();
   this.fetchProducts();
   this.fetchCategories();
-  this.fetchCartItems()
 }
 
 componentWillReceiveProps() {
-  this.fetchCartItems()
-  this.fetchOrderTotal()
+  if(this.state.currentUser) {
+    this.fetchCartItems();
+    this.fetchOrderTotal()
+  }
 }
 
 

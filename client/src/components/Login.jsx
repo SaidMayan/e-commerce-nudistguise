@@ -25,7 +25,7 @@ class Login extends Component {
       email: '',
       pw_digest: ''
     });
-    this.props.history.push('/')
+    this.props.history.push('/');
   }
 
   render() {
