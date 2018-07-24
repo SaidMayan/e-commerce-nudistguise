@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Carousel1 from './Carousel.jsx'
 
 function LandingPage(props) {
 
@@ -7,9 +8,9 @@ function LandingPage(props) {
   if(!props.user) {
     logReg =
       <h4 className="Login-landing">
-      <Link to="/login"
-      style={{ textDecoration: 'none', color: 'inherit' }}>Log in / </Link><span>
-      <Link to="/register" style={{ textDecoration: 'none', color: 'inherit' }}>Register</Link>
+      <Link className="login" to="/login"
+      style={{ textDecoration: 'none', color: 'inherit', fontSize: 20, fontWeight: 550 }}>Log in / </Link><span>
+      <Link className="register" to="/register" style={{ textDecoration: 'none', color: 'inherit', fontSize: 20, fontWeight: 550  }}>Register</Link>
       </span></h4>
   } else {
     logReg = (<div><ul><li className="greetUser">Hi, {props.user.email}</li><li onClick={props.logout} className="logOut">Logout</li></ul></div>)
@@ -22,7 +23,7 @@ function LandingPage(props) {
   return(
     <div className="LandingPage">
     <div className="header">
-      <h1 className="store-logo"><Link to="/" className="store-logo-link">NUDISTGUISE</Link></h1>
+      <h1 className="store-logo"><Link to="/" className="store-logo-link"  style={{ textDecoration: 'none', color: 'inherit' }}>NUDISTGUISE</Link></h1>
     </div>
       <ul className="firstUl">
         <li><Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>NEW ITEMS</Link></li>
@@ -42,6 +43,7 @@ function LandingPage(props) {
         <li>Legal</li>
         <li>About</li>
       </ul>
+
     </div>
 
   )

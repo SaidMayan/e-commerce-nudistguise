@@ -1,0 +1,32 @@
+.carousel-control.left, .carousel-control.right {
+    background-image: none
+}
+.carousel {
+  width:500px;
+  height:500px;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+@media (max-width:530px) {
+    .carousel {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.carousel2 {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.carousel-indicators{
+  display: none;
+}
+
+.carousel-control {
+  display: none;
+}

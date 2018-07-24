@@ -28,7 +28,7 @@ function Products(props) {
 }
 
 return(
-  <div>
+  <div className="products">
   {products}
   </div>
   )

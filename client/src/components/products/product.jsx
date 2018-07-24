@@ -5,7 +5,7 @@ function Product(props) {
   const id = props.product.id;
   const category = props.category.toLocaleLowerCase();
   return (
-    <div>
+    <div className="container">
     <div>
       <div className="product-description">
       <Link to={`/categories/${category}/${id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
