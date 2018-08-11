@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./productsView.css"
 
 class ProductsView extends Component {
   constructor(props) {
@@ -59,10 +60,10 @@ render() {
     });
 
 return (
-      <div className="single-product">
-        <div>
+    <div className="single-product-container">
+ 
         <img src={this.state.product.img_url} width="367px" />
-        </div>
+
         <div className="product-info">
           <div>
             <h1>{this.state.product.brand}</h1>
@@ -84,8 +85,8 @@ return (
               <button value="submit">Add to Cart</button>
             </form>
           </div>
-        </div>
       </div>
+    </div>
     )
 
 }

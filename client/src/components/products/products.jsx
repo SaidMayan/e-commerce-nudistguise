@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from './product';
+import "./products.css";
 
 function Products(props) {
   let products;

@@ -30,20 +30,20 @@ function LandingPageCarousel(props) {
       <ul className="firstUl">
         <li><Link to="/products" style={{ textDecoration: 'none', color: 'inherit' }}>NEW ITEMS</Link></li>
         <li><Link to="/categories" style={{ textDecoration: 'none', color: 'inherit' }}>CATEGORIES</Link></li>
-        <li>BRANDS</li>
-        <li>NUDISTGUISE FW18</li>
-        <li>COMING SOON...</li>
-        <li>BLOG</li>
+        <li style={{color: 'grey' }}>BRANDS</li>
+        <li style={{color: 'grey' }}>NUDISTGUISE FW18</li>
+        <li style={{color: 'grey' }}>COMING SOON...</li>
+        <li style={{color: 'grey' }}>BLOG</li>
       </ul>
       <br/>
      {logReg}
       <br/>
       <ul>
         <li><Link to="/cart" style={{ textDecoration: 'none', color: 'inherit' }}>Cart</Link></li><br/><br/>
-        <li>Help</li>
-        <li>Newsletter</li>
-        <li>Legal</li>
-        <li>About</li>
+        <li style={{color: 'grey' }}>Help</li>
+        <li style={{color: 'grey' }}>Newsletter</li>
+        <li style={{color: 'grey' }}>Legal</li>
+        <li style={{color: 'grey' }}>About</li>
       </ul>
       <div className="landingPageCarousel"><Carousel1 /></div>
     </div>
