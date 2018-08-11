@@ -1,0 +1,13 @@
+.landingPageCarousel {
+    position: relative;
+    bottom: 460px;
+    left: 100px;
+}
+
+@media only screen and (max-width: 800px) {
+    .landingPageCarousel {
+        position: relative;
+        bottom: 0px;
+    left: 0px;
+    }
+}

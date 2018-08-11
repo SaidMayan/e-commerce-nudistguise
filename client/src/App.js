@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Link, Route } from 'react-router-dom';
 import './App.css';
-import LandingPage from './components/LandingPage'
+import LandingPage from './components/LandingPage';
+import LandingPageCarousel from './components/LandingPageCarousel';
 import Login from './components/Login';
 import Registration from './components/Registration';
 import Products from './components/products/products';
@@ -276,7 +277,7 @@ componentWillReceiveProps() {
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={() => (<LandingPage user={this.state.currentUser} logout={this.logOut} />)} />
+        <Route exact path="/" render={() => (<LandingPageCarousel user={this.state.currentUser} logout={this.logOut} />)} />
         <Route path="/products" render={({ match }) => (
         <div>
         <LandingPage user={this.state.currentUser} logout={this.logOut} />

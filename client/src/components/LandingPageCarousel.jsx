@@ -2,9 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Carousel1 from './Carousel.jsx';
 import { Carousel } from '../../node_modules/react-bootstrap';
-import './LandingPage.css';
+import './LandingPageCarousel.css';
 
-function LandingPage(props) {
+function LandingPageCarousel(props) {
 
   let logReg;
   if(!props.user) {
@@ -45,10 +45,9 @@ function LandingPage(props) {
         <li>Legal</li>
         <li>About</li>
       </ul>
+      <div className="landingPageCarousel"><Carousel1 /></div>
     </div>
   )
 }
 
-export default LandingPage;
-
-
+export default LandingPageCarousel;
