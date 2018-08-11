@@ -43,7 +43,9 @@ margin: none;
 font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
-li
+h3, h2 {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
 
 .greetUser {
 text-align: left;

@@ -1,0 +1,18 @@
+.category-list {
+    position: relative;
+    bottom: 460px;
+    left: 50px;
+    display: inline;
+}
+
+h2 {
+    display: inline;
+}
+
+@media only screen and (max-width: 800px) {
+.category-list {
+    position: relative;
+    bottom: 0px;
+    left: 0px;
+}
+}

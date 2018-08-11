@@ -1,3 +1,7 @@
 .landingPage {
     position: relative;
 }
+
+.firstUl {
+    display: inline;
+}
