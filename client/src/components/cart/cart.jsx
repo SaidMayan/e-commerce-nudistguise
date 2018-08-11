@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import CartItems from './cartItems';
 import Total from './Total';
+import "./cart.css";
 
 function Cart(props) {
   // console.log(props.cartItems);
@@ -35,12 +36,13 @@ function Cart(props) {
 
 
   return (
-      <div>
-        <div>
-          <h3>Shopping Cart:</h3>
+      <div className="cart-items">
+          <h3 className="shopping-cart">Shopping Cart:</h3>
+          <br />
+          <br />
           {cartItems}
-        </div>
-        <div>
+        
+        <div className="cart-total">
           <Total
             total={props.total}
             cartItems={props.cartItems}

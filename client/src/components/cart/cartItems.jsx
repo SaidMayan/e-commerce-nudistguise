@@ -18,14 +18,14 @@ class CartItems extends Component {
 
 
     return (
-      <div className="cart">
-        <div className="cart-product-info">
+      <div className="cart" style={{display: "inline"}}>
+        <div className="cart-product-info" style={{display: "inline"}}>
           <img src={product.img_url} width="367px" />
           <h4>{product.brand}</h4>
           <p>{product.brief_description}</p>
           <h4>${product.price}</h4>
           {this.props.onDelete ? (
-            <div>
+            <div className="quantity-info">
               <p>Quantity: x{product.quantity}</p>
               <Link className="links" to={`/cart/edit/${product.c_id}`}>Edit Quantity</Link>
               <button className="links" onClick={this.handleDelete}>Delete From Cart</button>

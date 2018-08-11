@@ -1,0 +1,19 @@
+.cart-items {
+    position: relative;
+    bottom: 460px;
+    left: 50px;
+    display: inline;
+    /* float: left; */
+}
+
+@media only screen and (max-width: 800px) {
+    .cart-items {
+        position: relative;
+        bottom: 0px;
+        left: 0px;
+    }
+    }
+
+.cart-items, .shopping-cart, .cart-total {
+    display: inline;
+}
